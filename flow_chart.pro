@@ -16,20 +16,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    graphics_scene.cpp \
     graphics_view.cpp \
     item/autoLine.cpp \
     item/chart_base.cpp \
+    item/chart_line.cpp \
+    item/chart_rect.cpp \
     item/chip.cpp \
     item/edge.cpp \
+    magent_point.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    graphics_scene.h \
     graphics_view.h \
     item/autoLine.h \
     item/chart_base.h \
+    item/chart_define.h \
+    item/chart_line.h \
+    item/chart_rect.h \
     item/chip.h \
     item/edge.h \
+    magent_point.h \
     mainwindow.h
 
 FORMS += \

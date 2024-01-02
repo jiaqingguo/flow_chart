@@ -1,7 +1,11 @@
 
+#include <QGraphicsLineItem>
+#include <QGraphicsTextItem>
 
 #include <QDebug>
 #include "item/edge.h"
+#include "item/chart_rect.h"
+#include "item/chart_line.h"
 
 
 #include "mainwindow.h"
@@ -13,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    m_scene = new QGraphicsScene;
+    m_scene = new graphics_scene;
 
     //--------------------------------------------------
     //    QPolygonF myPolygon;
@@ -66,28 +70,33 @@ MainWindow::~MainWindow()
 
 void MainWindow::slot_btn_rect()
 {
-    m_type=1;
+    m_type=EChartType::Process;
+    m_scene->set_draw_item_type(EChartType::Process);
 }
 
 void MainWindow::slot_btn_round_rect()
 {
-
+    m_type=EChartType::type_chart_rect;
+    m_scene->set_draw_item_type(EChartType::type_chart_rect);
 }
 
 void MainWindow::slot_btn_round()
 {
-
+    m_type=EChartType::type_chart_line;
+    m_scene->set_draw_item_type(EChartType::type_chart_line);
 }
 
 void MainWindow::slot_btn_line()
 {
- m_type=11;
- m_lineFlag = true;
+    m_type=11;
+    m_lineFlag = true;
+
 }
 
 void MainWindow::slot_btn_diamond()
 {
-    m_type=0;
+    m_type=EChartType::Conditional;
+     m_scene->set_draw_item_type(EChartType::Conditional);
 }
 
 void MainWindow::slot_view_mouse_clicked(QPoint point)
@@ -101,30 +110,55 @@ void MainWindow::slot_view_mouse_move(QPoint point)
     {
         if (m_everyLine)
         {
-           //m_everyLine->adjust(ui->graphicsView->mapToScene(point));
+           m_everyLine->adjust(ui->graphicsView->mapToScene(point));
         }
         
+    }
+    if(m_pCur_line_Item)
+    {
+          //m_pCur_line_Item->setLine(m_clicked_pointF.x(),m_clicked_pointF.y(),ui->graphicsView->mapToScene(point).x(),ui->graphicsView->mapToScene(point).y());
     }
 }
 
 void MainWindow::addItem(QPoint point)
 {
     Chip *item = NULL;
+    QGraphicsItem *pItem =nullptr;
+    m_pCur_line_Item = nullptr;
     TItemData data;
     if(m_itemFlag)
     {
-        switch (m_type) {
-        case 0:
-            item = new Chip(Chip::Conditional,0,0);
+        switch (m_type)
+        {
+        case Conditional:
+            item = new Chip(Conditional,0,0);
             break;
-        case 1:
-            item = new Chip(Chip::Process,0,0);
+        case Process:
+            item = new Chip(EChartType::Process,0,0);
             break;
-        case 2:
-            item = new Chip(Chip::IO,0,0);
+        case EChartType::IO:
+            item = new Chip(EChartType::IO,0,0);
             break;
-        default:
-            return;
+        case EChartType::type_chart_rect:
+            pItem = new chart_rect(EChartType::type_chart_rect);
+             m_scene->addItem(pItem);
+             pItem->setPos(ui->graphicsView->mapToScene(point));
+            break;
+        case EChartType::type_chart_line:
+            QGraphicsTextItem *text_item = new QGraphicsTextItem;
+            m_scene->addItem(text_item);
+            m_pCur_line_Item = new chart_line(EChartType::type_chart_line,text_item);
+            // operstionWidget* pOperstionWidget = dynamic_cast<operstionWidget*>(pWidget);
+            m_scene->addItem(m_pCur_line_Item);
+            m_clicked_pointF =ui->graphicsView->mapToScene(point);
+            m_pCur_line_Item->setLine(m_clicked_pointF.x(),m_clicked_pointF.y(),m_clicked_pointF.x(),m_clicked_pointF.y());
+              qDebug()<<"chart_line create ";
+             break;
+
+
+
+     //  default:
+          // return;
         }
         if(item)
         {
@@ -192,10 +226,7 @@ void MainWindow::addPoint(QPoint point)//双击加转折点,划线存在
 }
 void MainWindow::everyTimeDraw(QPoint point)//实时划线
 {
-//    if(m_everyDraw)
-//    {
-//        m_everyLine->adjust(ui->graphicsView->mapToScene(point));
-//    }
+
 }
 
 //------------------------------------------------------------------------------------------------------------

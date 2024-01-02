@@ -40,13 +40,28 @@
     <ClCompile Include="item\autoLine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="item\chart_base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="item\chart_line.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="item\chart_rect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="item\chip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="item\edge.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="graphics_scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="graphics_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="magent_point.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -60,15 +75,33 @@
     <CustomBuild Include="item\autoLine.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="item\chart_base.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <ClInclude Include="item\chart_define.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="item\chart_line.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="item\chart_rect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <CustomBuild Include="item\chip.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="item\edge.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="graphics_scene.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="graphics_view.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <ClInclude Include="magent_point.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <CustomBuild Include="mainwindow.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -78,6 +111,12 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_autoLine.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_chart_base.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_chart_base.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="debug\moc_chip.cpp">
@@ -90,6 +129,12 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_edge.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_graphics_scene.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_graphics_scene.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="debug\moc_graphics_view.cpp">

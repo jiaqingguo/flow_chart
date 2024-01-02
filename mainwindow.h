@@ -4,11 +4,15 @@
 #include <QMainWindow>
 #include "item/chip.h"
 #include "item/autoLine.h"
+#include "graphics_scene.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+
+class chart_line;
+//class QPointF;
 
 typedef struct tagItemData
 {
@@ -59,18 +63,21 @@ private slots:
 
     void remove(Edge *);
 private:
-     QGraphicsScene * m_scene;
+     graphics_scene * m_scene;
       bool m_lineFlag;      // 是否划线;
       Chip *m_firstPressChip=nullptr;
-       bool m_everyDraw=false;
-        QPointF m_firstPoint;
-        AutoLine* m_everyLine = nullptr;
+      bool m_everyDraw=false;
+      QPointF m_firstPoint;
+      AutoLine* m_everyLine = nullptr;
       bool m_itemFlag =true;  // 是 item还是line
       int numofItem=0;//节点的编号---0 1 2 3 ...存储的值
       int numofLine=0;//节点的编号---0 1 2 3 ...存储的值
-      int m_type;
+      int m_type =0;
       std::vector<TItemData> itemData;
       std::vector<TLineData> lineData;
+
+      QPointF m_clicked_pointF;
+      chart_line *m_pCur_line_Item;
 
 private:
     Ui::MainWindow *ui;

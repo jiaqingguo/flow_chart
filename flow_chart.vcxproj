@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{072028CA-18DE-37AA-8F21-B35ACBF80C13}</ProjectGuid>
+    <ProjectGuid>{9C50C4FC-207F-3824-A37D-5708CF03E873}</ProjectGuid>
     <RootNamespace>flow_chart</RootNamespace>
     <Keyword>Qt4VSv1.0</Keyword>
     <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
@@ -57,7 +57,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\include;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\QtWidgets;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\QtGui;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\QtANGLE;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\QtCore;release;.;/include;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\..\Qt\Qt5.14.2\5.14.2\msvc2017_64\include;..\..\..\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\QtWidgets;..\..\..\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\QtGui;..\..\..\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\QtANGLE;..\..\..\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\QtCore;release;.;/include;..\..\..\Qt\Qt5.14.2\5.14.2\msvc2017_64\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -100,7 +100,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\include;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\QtWidgets;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\QtGui;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\QtANGLE;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\QtCore;debug;.;/include;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\..\Qt\Qt5.14.2\5.14.2\msvc2017_64\include;..\..\..\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\QtWidgets;..\..\..\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\QtGui;..\..\..\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\QtANGLE;..\..\..\Qt\Qt5.14.2\5.14.2\msvc2017_64\include\QtCore;debug;.;/include;..\..\..\Qt\Qt5.14.2\5.14.2\msvc2017_64\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
@@ -139,60 +139,89 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="item\autoLine.cpp" />
+    <ClCompile Include="item\chart_base.cpp" />
+    <ClCompile Include="item\chart_line.cpp" />
+    <ClCompile Include="item\chart_rect.cpp" />
     <ClCompile Include="item\chip.cpp" />
     <ClCompile Include="item\edge.cpp" />
+    <ClCompile Include="graphics_scene.cpp" />
     <ClCompile Include="graphics_view.cpp" />
+    <ClCompile Include="magent_point.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainwindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="item\autoLine.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">item\autoLine.h;release\moc_predefs.h;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/jqg/demo/qt/flow_chart/release/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/jqg/demo/qt/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore item\autoLine.h -o release\moc_autoLine.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/Z_project/flow_chart/release/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/Z_project/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore item\autoLine.h -o release\moc_autoLine.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MOC item/autoLine.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_autoLine.cpp;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">item\autoLine.h;debug\moc_predefs.h;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/jqg/demo/qt/flow_chart/debug/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/jqg/demo/qt/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore item\autoLine.h -o debug\moc_autoLine.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/Z_project/flow_chart/debug/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/Z_project/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore item\autoLine.h -o debug\moc_autoLine.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC item/autoLine.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_autoLine.cpp;%(Outputs)</Outputs>
     </CustomBuild>
+    <CustomBuild Include="item\chart_base.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">item\chart_base.h;release\moc_predefs.h;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/Z_project/flow_chart/release/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/Z_project/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore item\chart_base.h -o release\moc_chart_base.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MOC item/chart_base.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_chart_base.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">item\chart_base.h;debug\moc_predefs.h;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/Z_project/flow_chart/debug/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/Z_project/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore item\chart_base.h -o debug\moc_chart_base.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC item/chart_base.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_chart_base.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
+    <ClInclude Include="item\chart_define.h" />
+    <ClInclude Include="item\chart_line.h" />
+    <ClInclude Include="item\chart_rect.h" />
     <CustomBuild Include="item\chip.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">item\chip.h;release\moc_predefs.h;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/jqg/demo/qt/flow_chart/release/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/jqg/demo/qt/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore item\chip.h -o release\moc_chip.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/Z_project/flow_chart/release/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/Z_project/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore item\chip.h -o release\moc_chip.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MOC item/chip.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_chip.cpp;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">item\chip.h;debug\moc_predefs.h;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/jqg/demo/qt/flow_chart/debug/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/jqg/demo/qt/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore item\chip.h -o debug\moc_chip.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/Z_project/flow_chart/debug/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/Z_project/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore item\chip.h -o debug\moc_chip.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC item/chip.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_chip.cpp;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="item\edge.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">item\edge.h;release\moc_predefs.h;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/jqg/demo/qt/flow_chart/release/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/jqg/demo/qt/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore item\edge.h -o release\moc_edge.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/Z_project/flow_chart/release/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/Z_project/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore item\edge.h -o release\moc_edge.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MOC item/edge.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_edge.cpp;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">item\edge.h;debug\moc_predefs.h;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/jqg/demo/qt/flow_chart/debug/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/jqg/demo/qt/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore item\edge.h -o debug\moc_edge.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/Z_project/flow_chart/debug/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/Z_project/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore item\edge.h -o debug\moc_edge.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC item/edge.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_edge.cpp;%(Outputs)</Outputs>
     </CustomBuild>
+    <CustomBuild Include="graphics_scene.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">graphics_scene.h;release\moc_predefs.h;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/Z_project/flow_chart/release/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/Z_project/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore graphics_scene.h -o release\moc_graphics_scene.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MOC graphics_scene.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_graphics_scene.cpp;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">graphics_scene.h;debug\moc_predefs.h;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/Z_project/flow_chart/debug/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/Z_project/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore graphics_scene.h -o debug\moc_graphics_scene.cpp</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC graphics_scene.h</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_graphics_scene.cpp;%(Outputs)</Outputs>
+    </CustomBuild>
     <CustomBuild Include="graphics_view.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">graphics_view.h;release\moc_predefs.h;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/jqg/demo/qt/flow_chart/release/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/jqg/demo/qt/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore graphics_view.h -o release\moc_graphics_view.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/Z_project/flow_chart/release/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/Z_project/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore graphics_view.h -o release\moc_graphics_view.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MOC graphics_view.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_graphics_view.cpp;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">graphics_view.h;debug\moc_predefs.h;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/jqg/demo/qt/flow_chart/debug/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/jqg/demo/qt/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore graphics_view.h -o debug\moc_graphics_view.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/Z_project/flow_chart/debug/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/Z_project/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore graphics_view.h -o debug\moc_graphics_view.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC graphics_view.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_graphics_view.cpp;%(Outputs)</Outputs>
     </CustomBuild>
+    <ClInclude Include="magent_point.h" />
     <CustomBuild Include="mainwindow.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">mainwindow.h;release\moc_predefs.h;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/jqg/demo/qt/flow_chart/release/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/jqg/demo/qt/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore mainwindow.h -o release\moc_mainwindow.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DNDEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/Z_project/flow_chart/release/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/Z_project/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore mainwindow.h -o release\moc_mainwindow.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MOC mainwindow.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_mainwindow.cpp;%(Outputs)</Outputs>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">mainwindow.h;debug\moc_predefs.h;D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/jqg/demo/qt/flow_chart/debug/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/jqg/demo/qt/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore mainwindow.h -o debug\moc_mainwindow.cpp</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\moc.exe  -DUNICODE -D_UNICODE -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -DQT_DEPRECATED_WARNINGS -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB --compiler-flavor=msvc --include D:/1_project/Z_project/flow_chart/debug/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/mkspecs/win32-msvc -ID:/1_project/Z_project/flow_chart -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/msvc2017_64/include/QtCore mainwindow.h -o debug\moc_mainwindow.cpp</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">MOC mainwindow.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_mainwindow.cpp;%(Outputs)</Outputs>
     </CustomBuild>
@@ -202,6 +231,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="release\moc_autoLine.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_chart_base.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_chart_base.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="debug\moc_chip.cpp">
@@ -214,6 +249,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="release\moc_edge.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\moc_graphics_scene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="release\moc_graphics_scene.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="debug\moc_graphics_view.cpp">
@@ -231,15 +272,15 @@
     <CustomBuild Include="debug\moc_predefs.h.cbt">
       <FileType>Document</FileType>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cl -BxD:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -Zi -MDd -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;debug\moc_predefs.h</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\..\Qt\Qt5.14.2\5.14.2\msvc2017_64\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cl -BxD:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -Zi -MDd -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E ..\..\..\Qt\Qt5.14.2\5.14.2\msvc2017_64\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;debug\moc_predefs.h</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generate moc_predefs.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">debug\moc_predefs.h;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="release\moc_predefs.h.cbt">
       <FileType>Document</FileType>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cl -BxD:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -O2 -MD -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E D:\Qt\Qt5.14.2\5.14.2\msvc2017_64\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;release\moc_predefs.h</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\Qt\Qt5.14.2\5.14.2\msvc2017_64\mkspecs\features\data\dummy.cpp;%(AdditionalInputs)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cl -BxD:\Qt\Qt5.14.2\5.14.2\msvc2017_64\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -O2 -MD -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E ..\..\..\Qt\Qt5.14.2\5.14.2\msvc2017_64\mkspecs\features\data\dummy.cpp 2&gt;NUL &gt;release\moc_predefs.h</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generate moc_predefs.h</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">release\moc_predefs.h;%(Outputs)</Outputs>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

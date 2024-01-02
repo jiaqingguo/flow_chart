@@ -4,7 +4,7 @@
 #include <QDebug>
 #include "edge.h"
 
-Chip::Chip(Types type,int w, int h)
+Chip::Chip(EChartType type,int w, int h)
 {
     m_type = type;
     this->m_w = w;
@@ -80,6 +80,7 @@ void Chip::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
         break;
     case Process://矩形
         painter->drawRect(QRect(14, 14, 80, 40));//矩形
+        //painter->drawRect(QRect(0, 0, 110, 70));//矩形
         painter->setBrush(b);
         painter->drawRect(14,30,4,6);
         painter->drawRect(90,30,4,6);
@@ -202,6 +203,7 @@ void Chip::addEdge(Edge *edge)
 {
     edgeList << edge;
 }
+
 void Chip ::contextMenuEvent(QGraphicsSceneContextMenuEvent *event)
 {
 

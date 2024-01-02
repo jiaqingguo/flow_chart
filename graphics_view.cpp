@@ -34,7 +34,7 @@ const QString qstrStyleSheet("QToolButton{border-radius:4px; background-color: w
 #endif
 void graphics_view::mousePressEvent(QMouseEvent *event)
 {
-    qDebug()<<"----------GraphicsView::mousePressEvent"<<event->pos().x()<<event->pos().y();
+    qDebug()<<"GraphicsView::mousePressEvent----------"<<event->pos().x()<<event->pos().y();
     //m_View->mapToScene(m_View->mapFromParent(QPoint(e->x(),e->y()))
 
             // 获取点击位置的 item
@@ -47,22 +47,23 @@ void graphics_view::mousePressEvent(QMouseEvent *event)
        // 获取鼠标点击位置对应的 item
        QGraphicsItem* clickedItem = scene()->itemAt(scenePos, QTransform());
 
-       if (clickedItem) {
-           qDebug() << "Clicked on item:" << clickedItem;
-           // 在这里可以对点击到的 item 进行操作
-       } else {
+      //  emit pressLocate(QPoint(event->pos().x(),event->pos().y()));
+//       if (clickedItem) {
+//           qDebug() << "Clicked on item:" << clickedItem;
+//           // 在这里可以对点击到的 item 进行操作
+//       } else {
 
-           //创建新item qDebug() << "Clicked on empty space";
-           emit pressLocate(QPoint(event->pos().x(),event->pos().y()));
-            update();
-       }
+//           //创建新item qDebug() << "Clicked on empty space";
+//           emit pressLocate(QPoint(event->pos().x(),event->pos().y()));
+//            update();
+//       }
 
     QGraphicsView::mousePressEvent(event);
 }
 void graphics_view::mouseMoveEvent(QMouseEvent *event)
 {
     //    qDebug()<<"----------GraphicsView::mouseMoveEvent"<<event->pos().x()<<event->pos().y();
-    emit mousemove(QPoint(event->pos().x(),event->pos().y()));
+   // emit mousemove(QPoint(event->pos().x(),event->pos().y()));
     update();
     QGraphicsView::mouseMoveEvent(event);
 }

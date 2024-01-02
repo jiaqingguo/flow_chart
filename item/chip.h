@@ -5,13 +5,15 @@
 #include <QGraphicsItem>
 #include <QAction>
 
+#include "item/chart_define.h"
+
 class Edge;
 class Chip : public QObject,public QGraphicsItem
 {
     Q_OBJECT
 public:
-    enum Types { Conditional, Process, IO, Point};//判断 处理 输入
-    Chip(Types type,int w, int h);
+
+    Chip(EChartType type,int w, int h);
     void addEdge(Edge *edge);
 
     QRectF boundingRect() const Q_DECL_OVERRIDE;
@@ -27,7 +29,7 @@ protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant &value) Q_DECL_OVERRIDE;
 
 private:
-    Types m_type;
+    EChartType m_type;
     int m_w;
     int m_h;
     QColor m_color;
