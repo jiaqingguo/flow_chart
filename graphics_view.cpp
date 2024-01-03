@@ -5,6 +5,7 @@
 #include <QDebug>
 
 #include "graphics_view.h"
+#include "item/chart_rect.h"
 
 graphics_view::graphics_view()
 {
@@ -13,6 +14,29 @@ graphics_view::graphics_view()
 
 graphics_view::graphics_view(QWidget *parent)
 {
+
+}
+
+void graphics_view::create_chart_item(const EChartType type, const QPointF pos)
+{
+
+        switch (type)
+        {
+
+            case EChartType::type_chart_rect:
+
+
+                   chart_rect* pItem = new chart_rect(EChartType::type_chart_rect);
+
+                   this->scene()->addItem(pItem);
+                   pItem->setPos(pos);
+
+                break;
+
+//            default:
+//            break;
+        }
+
 
 }
 
@@ -37,43 +61,17 @@ const QString qstrStyleSheet("QToolButton{border-radius:4px; background-color: w
 void graphics_view::mousePressEvent(QMouseEvent *event)
 {
     qDebug()<<"GraphicsView::mousePressEvent----------"<<event->pos().x()<<event->pos().y();
-    //m_View->mapToScene(m_View->mapFromParent(QPoint(e->x(),e->y()))
-
-            // 获取点击位置的 item
-    // 获取鼠标点击位置的视图坐标
-       QPointF viewPos = event->pos();
-
-       // 将视图坐标映射到场景坐标
-       QPointF scenePos = mapToScene(viewPos.toPoint());
-
-       // 获取鼠标点击位置对应的 item
-       QGraphicsItem* clickedItem = scene()->itemAt(scenePos, QTransform());
-
-      //  emit pressLocate(QPoint(event->pos().x(),event->pos().y()));
-//       if (clickedItem) {
-//           qDebug() << "Clicked on item:" << clickedItem;
-//           // 在这里可以对点击到的 item 进行操作
-//       } else {
-
-//           //创建新item qDebug() << "Clicked on empty space";
-//           emit pressLocate(QPoint(event->pos().x(),event->pos().y()));
-//            update();
-//       }
 
     QGraphicsView::mousePressEvent(event);
 }
 void graphics_view::mouseMoveEvent(QMouseEvent *event)
 {
-    //    qDebug()<<"----------GraphicsView::mouseMoveEvent"<<event->pos().x()<<event->pos().y();
-   // emit mousemove(QPoint(event->pos().x(),event->pos().y()));
-    update();
     QGraphicsView::mouseMoveEvent(event);
 }
 void graphics_view::mouseDoubleClickEvent(QMouseEvent *event)
 {
     //    qDebug()<<"------------------GraphicsView::mouseDoubleClickEvent";
-    emit doubleClick(QPoint(event->pos().x(),event->pos().y()));
-    update();
+
     QGraphicsView::mouseDoubleClickEvent(event);
 }
 
@@ -113,8 +111,10 @@ void graphics_view::dropEvent(QDropEvent *event)
         int dropText;
         dataStream >> dropText ;
         qDebug()<<dropText;
-        //QPushButton *pLabel = new QPushButton(dropText);
-       // pGridLayout->addWidget(pLabel);
+
+        event->pos();
+        create_chart_item(EChartType(dropText),mapToScene(event->pos()));
+
     }
 
     event->accept(); //接受事件，不再传递;

@@ -40,7 +40,11 @@ public:
     ~MainWindow();
 
     void init_drag_group_box();
+
+    void init_tool_bar();
 private slots:
+    void slot_scene_mode_clicked(int id);
+    void slot_sceneScaleChanged(const QString &scale);
     void slot_btn_rect();
     void slot_btn_round_rect();
     void slot_btn_round();

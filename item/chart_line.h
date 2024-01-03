@@ -15,17 +15,19 @@ class chart_line : public QGraphicsLineItem
 public:
    // chart_line(EChartType type,QGraphicsItem *parent = nullptr);
     chart_line(EChartType type, QGraphicsTextItem* text_item,QGraphicsItem *parent = nullptr);
-    chart_line(magent_point *startPoint, magent_point *endPoint,QGraphicsTextItem* text_item);
+    chart_line(EChartType type,QGraphicsItem *parent = nullptr);
 
     void updatePosition();
     void update_text_position();
 
     void set_start_magent_point(magent_point *start_magent_point);
     void set_end_magent_point(magent_point* end_magent_point);
+
+    bool IsConnectSuccess();
 private:
      EChartType m_type;
-    magent_point *m_start_magent_point;
-    magent_point *m_end_magent_point;
+    magent_point *m_start_magent_point=nullptr;
+    magent_point *m_end_magent_point= nullptr;
     QPointF *m_start_point;
     QPointF *m_end_point;
 

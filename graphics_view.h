@@ -2,6 +2,7 @@
 #define GRAPHICS_VIEW_H
 
 #include <QGraphicsView>
+#include "item/chart_define.h"
 
 class graphics_view : public QGraphicsView
 {
@@ -9,6 +10,9 @@ class graphics_view : public QGraphicsView
 public:
     graphics_view();
     graphics_view(QWidget *parent = nullptr);
+
+private:
+   void create_chart_item(const EChartType type,const QPointF pos);
 protected:
 #ifndef QT_NO_WHEELEVENT
    // void wheelEvent(QWheelEvent *) Q_DECL_OVERRIDE;
@@ -24,7 +28,6 @@ protected:
 
      // 拖动放下事件;
      void dropEvent(QDropEvent *event);
-private:
 
 signals:
     void pressLocate(QPoint);

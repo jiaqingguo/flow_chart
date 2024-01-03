@@ -6,7 +6,7 @@
 
 class chart_line;
 class GraphicsItemChange;
-
+class magent_point;
 
 class graphics_scene : public QGraphicsScene
 {
@@ -16,13 +16,14 @@ public:
 
     // enum Mode { InsertItem, InsertLine, InsertText, MoveItem };
      void set_draw_item_type(EChartType type);
-
+     void setMode(const ESceneMode& mode);
 private:
-     EChartType m_draw_item_type=EChartType::type_chart_rect;
+     ESceneMode m_mode=ESceneMode::ESceneMode_move;
 
      bool m_bDraw =true;
      QPointF m_clicked_pointF;
      chart_line *m_pCur_line_Item;
+     magent_point* m_pStart_magent_point; // 开始的磁力点;
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
     void mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) override;

@@ -11,7 +11,34 @@
 //{
 
 //}
-chart_line::chart_line(EChartType type, QGraphicsTextItem* text_item, QGraphicsItem *parent)
+chart_line::chart_line(EChartType type, QGraphicsItem *parent)
+{
+     setZValue(1);
+    m_type= type;
+    m_text_item = new QGraphicsTextItem(this);
+
+    //setLine(QPointF(100,100),QPointF(100,100));
+
+    // 创建QPen对象并设置线条宽度和颜色
+       QPen pen;
+       pen.setWidth(5); // 设置线条宽度为2个像素
+       pen.setColor(Qt::red); // 设置线条颜色为红色
+
+       setPen(pen); // 设置直线的线条
+
+       m_text_item->setFlag(QGraphicsItem::ItemIsMovable, false);
+       m_text_item->setFlag(QGraphicsItem::ItemIsSelectable, false);
+       m_text_item->setZValue(this->zValue() + 1);
+       // 设置文本背景为不透明的白色
+       // 创建背景矩形项
+          m_text_backgroud = new QGraphicsRectItem(m_text_item->boundingRect(),this);
+          m_text_backgroud->setBrush(Qt::white);
+           m_text_backgroud->setPen(Qt::NoPen); // 设置为无边框
+         // m_text_backgroud->setPos(m_text_item->pos());
+       
+}
+
+chart_line::chart_line(EChartType type, QGraphicsTextItem* text_item,QGraphicsItem *parent)
 {
      setZValue(1);
     m_type= type;
@@ -35,18 +62,8 @@ chart_line::chart_line(EChartType type, QGraphicsTextItem* text_item, QGraphicsI
           m_text_backgroud->setBrush(Qt::white);
            m_text_backgroud->setPen(Qt::NoPen); // 设置为无边框
          // m_text_backgroud->setPos(m_text_item->pos());
-       
-}
-chart_line::chart_line( magent_point *startPoint, magent_point *endPoint,QGraphicsTextItem* text_item)
-    : m_start_magent_point(startPoint), m_end_magent_point(endPoint)
-{
-   // m_type= type;
-    m_text_item = text_item;
-    setPen(QPen(Qt::black, 2));
-    setZValue(1);
-    updatePosition();
-}
 
+}
 
 
 void chart_line::updatePosition()
@@ -100,6 +117,15 @@ void chart_line::set_end_magent_point(magent_point *end_magent_point)
     }
 }
 
+bool chart_line::IsConnectSuccess()
+{
+    if(m_end_magent_point && m_start_magent_point)
+    {
+        return true;
+    }
+    return false;
+}
+
 void chart_line::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
@@ -113,10 +139,10 @@ void chart_line::mousePressEvent(QGraphicsSceneMouseEvent *event)
        qreal y1 = originalLine.y1() - 5;
        qreal y2 = originalLine.y2() - 5;
 
-       leftRectItem = new QGraphicsRectItem(x1, y1, 10, 10, this);
-       rightRectItem = new QGraphicsRectItem(x2, y2, 10, 10, this);
-       leftRectItem->setFlag(QGraphicsItem::ItemIsMovable, true);
-       rightRectItem->setFlag(QGraphicsItem::ItemIsMovable, true);
+       //leftRectItem = new QGraphicsRectItem(x1, y1, 10, 10, this);
+      // rightRectItem = new QGraphicsRectItem(x2, y2, 10, 10, this);
+      // leftRectItem->setFlag(QGraphicsItem::ItemIsMovable, true);
+       //rightRectItem->setFlag(QGraphicsItem::ItemIsMovable, true);
     }
     QGraphicsLineItem::mousePressEvent(event);
 }
@@ -134,8 +160,8 @@ void chart_line::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         qreal y2 = originalLine.y2() + delta.y();
          update();
         setLine(x1, y1, x2, y2);
-        leftRectItem->setRect(x1 - 5, y1 - 5, 10, 10);
-        rightRectItem->setRect(x2 - 5, y2 - 5, 10, 10);
+       // leftRectItem->setRect(x1 - 5, y1 - 5, 10, 10);
+       // rightRectItem->setRect(x2 - 5, y2 - 5, 10, 10);
         // 将起点磁力点的坐标转换为连接线坐标系中的点
          QPointF startMapped = mapFromItem(leftRectItem, 0, 0);
                // 将终点磁力点的坐标转换为连接线坐标系中的点
@@ -174,13 +200,12 @@ void chart_line::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
                     
 
                    }
-//                   else if (m_text_item)
-//                   {
-//                       // 移除文字图形项
-//                       scene()->removeItem(m_textItem);
-//                       delete m_text_item;
-//                       m_textItem = nullptr;
-//                   }
+                   else
+                   {
+                        m_text_item->hide();
+                        m_text_backgroud->hide();
+                   }
+
                }
            }
            QGraphicsLineItem::mouseDoubleClickEvent(event);

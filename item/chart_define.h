@@ -13,7 +13,13 @@ enum EChartType
     type_chart_line,
     type_magent_point,
 
-};//判断 处理 输入
+};
+
+enum ESceneMode
+{
+    ESceneMode_move,
+    ESceneMode_drawLine,
+};
 
 
 struct st_chart_based

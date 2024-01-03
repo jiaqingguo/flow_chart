@@ -1,13 +1,18 @@
 ﻿#pragma execution_character_set("utf-8")
 #include <QGraphicsLineItem>
 #include <QGraphicsTextItem>
+#include <QComboBox>
 #include <QGridLayout>
+#include <QToolButton>
+#include <QButtonGroup>
+#include <QToolBar>
+
 #include <QDebug>
+
 #include "item/edge.h"
 #include "item/chart_rect.h"
 #include "item/chart_line.h"
 #include "custom_class/drag_pushbutton.h";
-
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -61,6 +66,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->graphicsView,&graphics_view::mousemove,this,&MainWindow::slot_view_mouse_move);
 
     init_drag_group_box();
+    init_tool_bar();
 
 }
 
@@ -97,15 +103,58 @@ void MainWindow::init_drag_group_box()
     button->setText("线");
     button->setFixedSize(60, 60);
     button->m_chart_type=(int)EChartType::type_chart_line;
-    pLayout->addWidget(button,1,1);
 
+    pLayout->addWidget(button,1,1);
+    connect(button,&drag_pushbutton::clicked,this,&MainWindow::slot_btn_line);
    // ui->
 //    connect(ui->btn_rect,&QPushButton::clicked,this,&MainWindow::slot_btn_rect);
 //    connect(ui->btn_round_rect,&QPushButton::clicked,this,&MainWindow::slot_btn_round_rect);
 //    connect(ui->btn_round,&QPushButton::clicked,this,&MainWindow::slot_btn_round);
 
 //    connect(ui->btn_line,&QPushButton::clicked,this,&MainWindow::slot_btn_line);
-//    connect(ui->btn_diamond,&QPushButton::clicked,this,&MainWindow::slot_btn_diamond);
+    //    connect(ui->btn_diamond,&QPushButton::clicked,this,&MainWindow::slot_btn_diamond);
+}
+
+void MainWindow::init_tool_bar()
+{
+    QToolButton *pointerButton = new QToolButton;
+    pointerButton->setCheckable(true);
+    pointerButton->setChecked(true);
+    pointerButton->setIcon(QIcon(":/images/pointer.png"));
+
+    QToolButton *linePointerButton = new QToolButton;
+    linePointerButton->setCheckable(true);
+    linePointerButton->setIcon(QIcon(":/images/linepointer.png"));
+
+    auto pointerTypeGroup = new QButtonGroup(this);
+    pointerTypeGroup->addButton(pointerButton, int(ESceneMode::ESceneMode_move));
+    pointerTypeGroup->addButton(linePointerButton, int(ESceneMode::ESceneMode_drawLine));
+    connect(pointerTypeGroup, QOverload<int>::of(&QButtonGroup::buttonClicked),
+            this, &MainWindow::slot_scene_mode_clicked);
+
+    auto sceneScaleCombo = new QComboBox;
+    QStringList scales;
+    scales << tr("50%") << tr("75%") << tr("100%") << tr("125%") << tr("150%");
+    sceneScaleCombo->addItems(scales);
+    sceneScaleCombo->setCurrentIndex(2);
+    connect(sceneScaleCombo, &QComboBox::currentTextChanged,
+            this, &MainWindow::slot_sceneScaleChanged);
+
+    QToolBar* pointerToolbar = this->addToolBar(tr("Pointer type"));
+    pointerToolbar->addWidget(pointerButton);
+    pointerToolbar->addWidget(linePointerButton);
+    pointerToolbar->addWidget(sceneScaleCombo);
+
+}
+
+void MainWindow::slot_scene_mode_clicked(int id)
+{
+    m_scene->setMode(ESceneMode(id));
+}
+
+void MainWindow::slot_sceneScaleChanged(const QString &scale)
+{
+
 }
 
 void MainWindow::slot_btn_rect()
@@ -130,13 +179,13 @@ void MainWindow::slot_btn_line()
 {
     m_type=11;
     m_lineFlag = true;
-
+m_scene->set_draw_item_type(EChartType::Conditional);
 }
 
 void MainWindow::slot_btn_diamond()
 {
     m_type=EChartType::Conditional;
-     m_scene->set_draw_item_type(EChartType::Conditional);
+
 }
 
 void MainWindow::slot_view_mouse_clicked(QPoint point)
@@ -162,107 +211,12 @@ void MainWindow::slot_view_mouse_move(QPoint point)
 
 void MainWindow::addItem(QPoint point)
 {
-    Chip *item = NULL;
-    QGraphicsItem *pItem =nullptr;
-    m_pCur_line_Item = nullptr;
-    TItemData data;
-    if(m_itemFlag)
-    {
-        switch (m_type)
-        {
-        case Conditional:
-            item = new Chip(Conditional,0,0);
-            break;
-        case Process:
-            item = new Chip(EChartType::Process,0,0);
-            break;
-        case EChartType::IO:
-            item = new Chip(EChartType::IO,0,0);
-            break;
-        case EChartType::type_chart_rect:
-            pItem = new chart_rect(EChartType::type_chart_rect);
-             m_scene->addItem(pItem);
-             pItem->setPos(ui->graphicsView->mapToScene(point));
-            break;
-        case EChartType::type_chart_line:
-            QGraphicsTextItem *text_item = new QGraphicsTextItem;
-            m_scene->addItem(text_item);
-            m_pCur_line_Item = new chart_line(EChartType::type_chart_line,text_item);
-            // operstionWidget* pOperstionWidget = dynamic_cast<operstionWidget*>(pWidget);
-            m_scene->addItem(m_pCur_line_Item);
-            m_clicked_pointF =ui->graphicsView->mapToScene(point);
-            m_pCur_line_Item->setLine(m_clicked_pointF.x(),m_clicked_pointF.y(),m_clicked_pointF.x(),m_clicked_pointF.y());
-              qDebug()<<"chart_line create ";
-             break;
 
-
-
-     //  default:
-          // return;
-        }
-        if(item)
-        {
-            m_scene->addItem(item);
-            item->setData(0,numofItem);
-            item->setPos( ui->graphicsView->mapToScene(point)/*+QPointF(-54,-34)*/);
-            connect(item,SIGNAL(itemPress(Chip *,QPointF)),this,SLOT(setFirstItem(Chip *,QPointF)));//第一个节点被单击
-            connect(item,SIGNAL(remove(Chip*)),this,SLOT(remove(Chip*)));
-            connect(item,SIGNAL(itemInfo(Chip*)),this,SLOT(itemInfo(Chip*)));
-
-            data.item = m_type;
-            data.pos =  ui->graphicsView->mapToScene(point);
-            data.numItem = numofItem;
-            itemData.push_back(data);
-
-            numofItem++;
-        }
-    }
     //connect(item,SIGNAL(itemRightPress(Chip *,QPointF)),this,SLOT(drawLine(Chip *,QPointF)));//第二个节点被右击
 }
 void MainWindow::addPoint(QPoint point)//双击加转折点,划线存在
 {
-   /* TItemData data;
-    TLineData data_;
-    if(m_lineFlag && m_firstPressChip)
-    {
-        Chip *item = new Chip(Chip::Point,0,0);
-        m_scene->addItem(item);
-        item->setData(0,numofItem);
-        item->setPos(ui->graphicsView->mapToScene(point));
 
-        data.item = 3;
-        data.pos = ui->graphicsView->mapToScene(point);
-        data.numItem = numofItem;
-        itemData.push_back(data);
-
-        numofItem++;
-
-        Edge *line = new Edge(m_firstPressChip,item,true,m_firstPoint,QPointF(0,0));
-        m_scene->addItem(line);
-        line->setData(0,numofLine);
-        connect(line,SIGNAL(remove(Edge*)),this,SLOT(remove(Edge*)));
-
-        data_.turning = 1;
-        data_.startOffset = m_firstPoint;
-        data_.endOffset = QPointF(0,0);
-        data_.numItem1 = m_firstPressChip->data(0).toString().toInt();
-        data_.numItem2 = item->data(0).toString().toInt();
-        data_.numLine = numofLine;
-        lineData.push_back(data_);
-
-        numofLine++;
-
-        m_firstPressChip = item;
-        m_firstPoint = QPointF(0,0);
-
-        if(m_everyLine)
-        {
-            delete m_everyLine;
-            m_everyLine = NULL;
-        }
-        m_everyLine = new AutoLine(m_firstPressChip,QPointF(0,0));
-        m_scene->addItem(m_everyLine);
-    }*/
 }
 void MainWindow::everyTimeDraw(QPoint point)//实时划线
 {
@@ -272,55 +226,7 @@ void MainWindow::everyTimeDraw(QPoint point)//实时划线
 //------------------------------------------------------------------------------------------------------------
 void MainWindow::setFirstItem(Chip *chip,QPointF point)//节点左键
 {
-    qDebug()<<"setFirstItem()----start";
-    TLineData data_;
-    if(m_lineFlag)
-    {
-        //qDebug()<<"setFirstItem"<<(int)chip;
-        if(!m_firstPressChip)//第一个点为空，设置起点
-        {
-            if(!m_everyDraw)
-            {
-                m_firstPressChip = chip;
-                m_firstPoint = point;
-            }
 
-            m_everyDraw = true;
-
-            if(m_everyLine)
-            {
-                delete m_everyLine;
-                m_everyLine = NULL;
-            }
-            m_everyLine = new AutoLine(m_firstPressChip,m_firstPoint);
-            m_scene->addItem(m_everyLine);
-        }
-        else//设置终点
-        {
-            m_everyDraw = false;
-            if(m_everyLine)
-            {
-                delete m_everyLine;
-                m_everyLine = NULL;
-            }
-            Edge *line = new Edge(m_firstPressChip,chip,false,m_firstPoint,point);
-            m_scene->addItem(line);
-            line->setData(0,numofLine);
-            connect(line,SIGNAL(remove(Edge*)),this,SLOT(remove(Edge*)));
-
-            data_.turning = 0;
-            data_.startOffset = m_firstPoint;
-            data_.endOffset = point;
-            data_.numItem1 = m_firstPressChip->data(0).toString().toInt();
-            data_.numItem2 = chip->data(0).toString().toInt();
-            data_.numLine = numofLine;
-           // lineData.push_back(data_);
-
-
-            numofLine++;
-            m_firstPressChip = NULL;
-        }
-    }
 }
 void MainWindow::drawLine(Chip * chip,QPointF point)//节点右键，划线完成
 {
@@ -333,8 +239,7 @@ void MainWindow::remove(Chip *)
 
 void MainWindow::itemInfo(Chip *)
 {
-   // m_AttributeWidget->addView(1,80,40,"details");
-   // qDebug()<<"--------------------itemInfo(Chip *)";
+
 }
 void MainWindow::remove(Edge *)
 {

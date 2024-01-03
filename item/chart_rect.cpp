@@ -58,6 +58,7 @@ magent_point *chart_rect::get_magent_point_by_scenePos(const QPointF &scenePos)
         }
 
     }
+    return nullptr;
 }
 
 QVariant chart_rect::itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant &value)
