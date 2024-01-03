@@ -38,6 +38,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    void init_drag_group_box();
 private slots:
     void slot_btn_rect();
     void slot_btn_round_rect();

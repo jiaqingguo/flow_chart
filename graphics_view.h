@@ -17,8 +17,15 @@ protected:
      void mouseMoveEvent(QMouseEvent *event);
      void mouseDoubleClickEvent(QMouseEvent *event);
 
+     // 拖动进入事件;
+     void dragEnterEvent(QDragEnterEvent *event);
+     // 拖动移动事件;
+     void dragMoveEvent(QDragMoveEvent *event);
+
+     // 拖动放下事件;
+     void dropEvent(QDropEvent *event);
 private:
-   // View *view;
+
 signals:
     void pressLocate(QPoint);
     void mousemove(QPoint);

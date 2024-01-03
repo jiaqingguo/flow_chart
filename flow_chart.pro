@@ -16,6 +16,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    custom_class/drag_group_box.cpp \
+    custom_class/drag_pushbutton.cpp \
+    custom_class/drag_widget.cpp \
     graphics_scene.cpp \
     graphics_view.cpp \
     item/autoLine.cpp \
@@ -29,6 +32,9 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
+    custom_class/drag_group_box.h \
+    custom_class/drag_pushbutton.h \
+    custom_class/drag_widget.h \
     graphics_scene.h \
     graphics_view.h \
     item/autoLine.h \

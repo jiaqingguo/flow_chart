@@ -1,4 +1,6 @@
 #include <QMouseEvent>
+#include <QGraphicsSceneDragDropEvent>
+#include <QMimeData>
 
 #include <QDebug>
 
@@ -6,7 +8,7 @@
 
 graphics_view::graphics_view()
 {
-
+    setAcceptDrops(true);
 }
 
 graphics_view::graphics_view(QWidget *parent)
@@ -74,3 +76,51 @@ void graphics_view::mouseDoubleClickEvent(QMouseEvent *event)
     update();
     QGraphicsView::mouseDoubleClickEvent(event);
 }
+
+void graphics_view::dragEnterEvent(QDragEnterEvent *event)
+{
+    if(event->mimeData()->hasFormat("application/drag_widget"))
+    {
+        if (event->source() == this)
+            event->accept();                // 接受事件，不再传递;
+        else
+            event->acceptProposedAction();  // 窗口部件接受拖放;
+    }
+    else
+        event->ignore();                    // 忽略事件，继续传递;
+}
+
+void graphics_view::dragMoveEvent(QDragMoveEvent *event)
+{
+    if(event->mimeData()->hasFormat("application/drag_widget"))
+    {
+        if (event->source() == this)
+            event->accept();                // 接受事件，不再传递;
+        else
+            event->acceptProposedAction();  // 窗口部件接受拖放;
+    }
+    else
+        event->ignore();                    // 忽略事件，继续传递;
+}
+
+void graphics_view::dropEvent(QDropEvent *event)
+{
+    if(event->mimeData()->hasFormat("application/drag_widget"))
+    {
+        QByteArray itemData = event->mimeData()->data("application/drag_widget");
+        QDataStream dataStream(&itemData, QIODevice::ReadOnly);
+
+        int dropText;
+        dataStream >> dropText ;
+        qDebug()<<dropText;
+        //QPushButton *pLabel = new QPushButton(dropText);
+       // pGridLayout->addWidget(pLabel);
+    }
+
+    event->accept(); //接受事件，不再传递;
+}
+
+
+
+
+

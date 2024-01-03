@@ -1,11 +1,12 @@
-
+﻿#pragma execution_character_set("utf-8")
 #include <QGraphicsLineItem>
 #include <QGraphicsTextItem>
-
+#include <QGridLayout>
 #include <QDebug>
 #include "item/edge.h"
 #include "item/chart_rect.h"
 #include "item/chart_line.h"
+#include "custom_class/drag_pushbutton.h";
 
 
 #include "mainwindow.h"
@@ -47,25 +48,64 @@ MainWindow::MainWindow(QWidget *parent)
     m_scene->setBackgroundBrush(pixmap);
     ui->graphicsView->setScene((m_scene));
 
-    connect(ui->btn_rect,&QPushButton::clicked,this,&MainWindow::slot_btn_rect);
-    connect(ui->btn_round_rect,&QPushButton::clicked,this,&MainWindow::slot_btn_round_rect);
-    connect(ui->btn_round,&QPushButton::clicked,this,&MainWindow::slot_btn_round);
+//    connect(ui->btn_rect,&QPushButton::clicked,this,&MainWindow::slot_btn_rect);
+//    connect(ui->btn_round_rect,&QPushButton::clicked,this,&MainWindow::slot_btn_round_rect);
+//    connect(ui->btn_round,&QPushButton::clicked,this,&MainWindow::slot_btn_round);
 
-    connect(ui->btn_line,&QPushButton::clicked,this,&MainWindow::slot_btn_line);
-    connect(ui->btn_diamond,&QPushButton::clicked,this,&MainWindow::slot_btn_diamond);
+//    connect(ui->btn_line,&QPushButton::clicked,this,&MainWindow::slot_btn_line);
+//    connect(ui->btn_diamond,&QPushButton::clicked,this,&MainWindow::slot_btn_diamond);
    // connect(ui->btn_line,&QPushButton::clicked,this,&MainWindow::slot_btn_line);
    // connect(ui->btn_line,&QPushButton::clicked,this,&MainWindow::slot_btn_line);
 
     connect(ui->graphicsView,&graphics_view::pressLocate,this,&MainWindow::slot_view_mouse_clicked);
     connect(ui->graphicsView,&graphics_view::mousemove,this,&MainWindow::slot_view_mouse_move);
 
-
+    init_drag_group_box();
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::init_drag_group_box()
+{
+
+    QGridLayout* pLayout = new QGridLayout(ui->groupBox_chart);
+
+    drag_pushbutton *button = new drag_pushbutton;
+    button->setText("菱");
+    button->setFixedSize(60, 60);
+    button->m_chart_type=(int)EChartType::Conditional;
+    pLayout->addWidget(button,0,0);
+
+
+    button  = new drag_pushbutton;
+    button->setText("rect");
+    button->setFixedSize(60, 60);
+    button->m_chart_type=(int)EChartType::type_chart_rect;
+    pLayout->addWidget(button,0,1);
+
+    button  = new drag_pushbutton;
+    button->setText("圆");
+    button->setFixedSize(60, 60);
+    button->m_chart_type=(int)EChartType::Process;
+    pLayout->addWidget(button,1,0);
+
+    button  = new drag_pushbutton;
+    button->setText("线");
+    button->setFixedSize(60, 60);
+    button->m_chart_type=(int)EChartType::type_chart_line;
+    pLayout->addWidget(button,1,1);
+
+   // ui->
+//    connect(ui->btn_rect,&QPushButton::clicked,this,&MainWindow::slot_btn_rect);
+//    connect(ui->btn_round_rect,&QPushButton::clicked,this,&MainWindow::slot_btn_round_rect);
+//    connect(ui->btn_round,&QPushButton::clicked,this,&MainWindow::slot_btn_round);
+
+//    connect(ui->btn_line,&QPushButton::clicked,this,&MainWindow::slot_btn_line);
+//    connect(ui->btn_diamond,&QPushButton::clicked,this,&MainWindow::slot_btn_diamond);
 }
 
 void MainWindow::slot_btn_rect()

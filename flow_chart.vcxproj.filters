@@ -52,6 +52,15 @@
     <ClCompile Include="item\chip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="custom_class\drag_group_box.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="custom_class\drag_pushbutton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="custom_class\drag_widget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="item\edge.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -90,6 +99,15 @@
     <CustomBuild Include="item\chip.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="custom_class\drag_group_box.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="custom_class\drag_pushbutton.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="custom_class\drag_widget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="item\edge.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -123,6 +141,24 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="release\moc_chip.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_drag_group_box.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_drag_group_box.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_drag_pushbutton.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_drag_pushbutton.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug\moc_drag_widget.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="release\moc_drag_widget.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="debug\moc_edge.cpp">

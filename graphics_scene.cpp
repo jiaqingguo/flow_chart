@@ -11,7 +11,8 @@
 
 graphics_scene::graphics_scene()
 {
-
+    // 接受放置事件;
+    //setAcceptDrops(true);
 }
 
 void graphics_scene::set_draw_item_type(EChartType type)
@@ -60,7 +61,6 @@ void graphics_scene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
                 m_pCur_line_Item->setLine(m_clicked_pointF.x(),m_clicked_pointF.y(),m_clicked_pointF.x(),m_clicked_pointF.y());
                  // qDebug()<<"chart_line create ";
                  break;
-
      //  default:
           // return;
         }
@@ -128,10 +128,11 @@ void graphics_scene::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent)
             m_pCur_line_Item->set_end_magent_point(pMagent_point);
         }*/
 
-        m_bDraw =false;
+       // m_bDraw =false;
         m_pCur_line_Item= nullptr;
     }
 
     QGraphicsScene::mouseReleaseEvent(mouseEvent);
 }
+
 
