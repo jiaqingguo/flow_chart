@@ -15,12 +15,6 @@ graphics_scene::graphics_scene()
     //setAcceptDrops(true);
 }
 
-void graphics_scene::set_draw_item_type(EChartType type)
-{
-   // m_draw_item_type =type;
-    m_bDraw=!m_bDraw;
-
-}
 
 void graphics_scene::setMode(const ESceneMode &mode)
 {
@@ -39,8 +33,6 @@ void graphics_scene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
         m_pCur_line_Item = nullptr;
 
-       // QGraphicsTextItem *text_item = new QGraphicsTextItem;
-      //  addItem(text_item);
         m_pCur_line_Item = new chart_line(EChartType::type_chart_line);
         m_pStart_magent_point = dynamic_cast<magent_point*>(pItem);
         if(m_pStart_magent_point)
@@ -48,7 +40,7 @@ void graphics_scene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
            // m_pCur_line_Item->set_start_magent_point(pMagent_point);
         }
 
-        // operstionWidget* pOperstionWidget = dynamic_cast<operstionWidget*>(pWidget);
+
         addItem(m_pCur_line_Item);
         m_clicked_pointF =mouseEvent->scenePos();
         m_pCur_line_Item->setLine(m_clicked_pointF.x(),m_clicked_pointF.y(),m_clicked_pointF.x(),m_clicked_pointF.y());
@@ -75,11 +67,9 @@ void graphics_scene::mouseReleaseEvent(QGraphicsSceneMouseEvent* mouseEvent)
 {
     if (m_mode== ESceneMode::ESceneMode_drawLine && m_pCur_line_Item)
     {
-        //auto pItem = itemAt(mouseEvent->scenePos(), QTransform());
-         QList<QGraphicsItem*> items=this->items(mouseEvent->scenePos()/*,Qt::IntersectsItemShape*/);
-        //auto pchart_rect = dynamic_cast<chart_rect*>(pItem);
-        //auto Line_itenm = dynamic_cast<chart_line*>(pItem);
-      // magent_point* pMagent_point = dynamic_cast<magent_point*>(pItem);
+
+        QList<QGraphicsItem*> items=this->items(mouseEvent->scenePos()/*,Qt::IntersectsItemShape*/);
+
         for (auto &item : items)
         {
             magent_point* pEndMagent_point = dynamic_cast<magent_point*>(item);

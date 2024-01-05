@@ -10,6 +10,7 @@ enum EChartType
     Point,
     line,
     type_chart_rect,
+    type_chart_diamond,
     type_chart_line,
     type_magent_point,
 

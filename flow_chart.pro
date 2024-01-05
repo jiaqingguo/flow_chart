@@ -32,6 +32,7 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
+    custom_class/chart_diamond.h \
     custom_class/drag_group_box.h \
     custom_class/drag_pushbutton.h \
     custom_class/drag_widget.h \
@@ -55,4 +56,5 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-RESOURCES +=
+RESOURCES += \
+    resource.qrc

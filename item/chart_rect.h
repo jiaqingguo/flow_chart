@@ -18,16 +18,55 @@ public:
 
     magent_point* get_magent_point_by_scenePos(const QPointF &scenePos);
 
-  //  enum { Type = UserType + 1 };
-    int type() const override { return Type; }
+    int type() const override { return m_type; }
+private:
+    QSet<magent_point *> m_magnetPoints;
+    EChartType m_type;
+
+    magent_point *m_pTopMagentPoint     =nullptr;
+    magent_point *m_pLeftMagentPoint  =nullptr;
+    magent_point *m_pRightMagentPoint    =nullptr;
+    magent_point *m_pButtomMagentPoint =nullptr;
+
+    bool resizing = false;
+    bool mouseOverTopLeft = false;
+    bool mouseOverBottomRight = false;
+    int HandleSize = 8;
 
 
-       QSet<magent_point *> m_magnetPoints;
-       EChartType m_type;
+     static const int handleSize = 8;
 
+    bool resizingTopLeft = false;
+      bool resizingBottomRight = false;
+      bool resizingTopRight = false;
+      bool resizingBottomLeft = false;
 
+      QRectF topLeftHandle;
+      QRectF bottomRightHandle;
+      QRectF topRightHandle;
+      QRectF bottomLeftHandle;
 protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant& value) override;
+
+protected:
+    void hoverMoveEvent(QGraphicsSceneHoverEvent *event) override ;
+
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) override ;
+
+
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
+
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override ;
+
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override ;
+
+private:
+    bool isInResizeArea(const QPointF &pos) ;
+
+    void  updateMagentPointPos();
+
+    // 更细连接线;
+    void updateConnectLinePos();
 };
 
 #endif // CHART_RECT_H

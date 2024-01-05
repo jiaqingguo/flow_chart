@@ -83,7 +83,7 @@ void MainWindow::init_drag_group_box()
     drag_pushbutton *button = new drag_pushbutton;
     button->setText("菱");
     button->setFixedSize(60, 60);
-    button->m_chart_type=(int)EChartType::Conditional;
+    button->m_chart_type=(int)EChartType::type_chart_diamond;
     pLayout->addWidget(button,0,0);
 
 
@@ -100,7 +100,7 @@ void MainWindow::init_drag_group_box()
     pLayout->addWidget(button,1,0);
 
     button  = new drag_pushbutton;
-    button->setText("线");
+    button->setText("");
     button->setFixedSize(60, 60);
     button->m_chart_type=(int)EChartType::type_chart_line;
 
@@ -120,11 +120,11 @@ void MainWindow::init_tool_bar()
     QToolButton *pointerButton = new QToolButton;
     pointerButton->setCheckable(true);
     pointerButton->setChecked(true);
-    pointerButton->setIcon(QIcon(":/images/pointer.png"));
+    pointerButton->setIcon(QIcon("://image/pointer.png"));
 
     QToolButton *linePointerButton = new QToolButton;
     linePointerButton->setCheckable(true);
-    linePointerButton->setIcon(QIcon(":/images/linepointer.png"));
+    linePointerButton->setIcon(QIcon("://image/linepointer.png"));
 
     auto pointerTypeGroup = new QButtonGroup(this);
     pointerTypeGroup->addButton(pointerButton, int(ESceneMode::ESceneMode_move));
@@ -143,7 +143,7 @@ void MainWindow::init_tool_bar()
     QToolBar* pointerToolbar = this->addToolBar(tr("Pointer type"));
     pointerToolbar->addWidget(pointerButton);
     pointerToolbar->addWidget(linePointerButton);
-    pointerToolbar->addWidget(sceneScaleCombo);
+    //pointerToolbar->addWidget(sceneScaleCombo);
 
 }
 
@@ -159,32 +159,28 @@ void MainWindow::slot_sceneScaleChanged(const QString &scale)
 
 void MainWindow::slot_btn_rect()
 {
-    m_type=EChartType::Process;
-    m_scene->set_draw_item_type(EChartType::Process);
+  
+   
 }
 
 void MainWindow::slot_btn_round_rect()
 {
-    m_type=EChartType::type_chart_rect;
-    m_scene->set_draw_item_type(EChartType::type_chart_rect);
+ 
+ 
 }
 
 void MainWindow::slot_btn_round()
 {
-    m_type=EChartType::type_chart_line;
-    m_scene->set_draw_item_type(EChartType::type_chart_line);
+ 
 }
 
 void MainWindow::slot_btn_line()
 {
-    m_type=11;
-    m_lineFlag = true;
-m_scene->set_draw_item_type(EChartType::Conditional);
+  
 }
 
 void MainWindow::slot_btn_diamond()
 {
-    m_type=EChartType::Conditional;
 
 }
 

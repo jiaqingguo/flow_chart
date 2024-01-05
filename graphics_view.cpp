@@ -22,19 +22,30 @@ void graphics_view::create_chart_item(const EChartType type, const QPointF pos)
 
         switch (type)
         {
-
             case EChartType::type_chart_rect:
+            {
+                chart_rect* pItem = new chart_rect(EChartType::type_chart_rect);
 
-
-                   chart_rect* pItem = new chart_rect(EChartType::type_chart_rect);
-
-                   this->scene()->addItem(pItem);
-                   pItem->setPos(pos);
+                this->scene()->addItem(pItem);
+                pItem->setPos(pos);
 
                 break;
+            }
+            case EChartType::type_chart_diamond:
+            {
+                chart_rect* pItem = new chart_rect(EChartType::type_chart_rect);
+                 pItem->setRotation(45);
+                this->scene()->addItem(pItem);
+                pItem->setPos(pos);
+                  break;
+            }
 
-//            default:
-//            break;
+
+            default:
+            {
+                 break;
+            }
+//
         }
 
 
