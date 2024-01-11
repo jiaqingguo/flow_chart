@@ -22,6 +22,12 @@ enum ESceneMode
     ESceneMode_drawLine,
 };
 
+enum EItemDataType
+{
+    EItemDataType_ID,
+    EItemDataType_ChartType,
+    EItemDataType_MagentOfRcetID,  // 磁力点所属矩形ID;
+};
 
 struct st_chart_based
 {

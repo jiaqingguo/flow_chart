@@ -37,7 +37,7 @@ chart_rect::chart_rect(EChartType type,QGraphicsItem *parent) : QGraphicsRectIte
 
 void chart_rect::addMagnetPoint(magent_point *point)
 {
-    point->setRect(-8, -8, 16, 16);
+  //  point->setRect(-8, -8, 16, 16);
     m_magnetPoints.insert(point);
 }
 
@@ -145,6 +145,7 @@ void chart_rect::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     {
        QGraphicsRectItem::mouseMoveEvent(event);
     }
+
 }
 
 void chart_rect::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
@@ -158,6 +159,7 @@ void chart_rect::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 
 void chart_rect::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+   painter->setPen(QPen(Qt::black, 2));
    QGraphicsRectItem::paint(painter, option, widget);
 
    topLeftHandle = QRectF(rect().topLeft(), QSizeF(handleSize, handleSize));
@@ -165,13 +167,8 @@ void chart_rect::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
    topRightHandle = QRectF(rect().topRight() + QPointF(-handleSize, 0), QSizeF(handleSize, handleSize));
    bottomLeftHandle = QRectF(rect().bottomLeft() + QPointF(0, -handleSize), QSizeF(handleSize, handleSize));
 
- //  painter->setBrush(Qt::black);
-//   painter->drawRect(topLeftHandle);
-//   painter->drawRect(bottomRightHandle);
-//   painter->drawRect(topRightHandle);
-//   painter->drawRect(bottomLeftHandle);
-     updateMagentPointPos();
-     updateConnectLinePos();
+    updateMagentPointPos();
+    updateConnectLinePos();
 }
 
 
@@ -186,6 +183,7 @@ bool chart_rect::isInResizeArea(const QPointF &pos)
 
 void chart_rect::updateMagentPointPos()
 {
+    // 绘制磁力点;
     QRectF r = rect();
     // 上边中点椭圆
     m_pTopMagentPoint->setPos(r.left() + r.width() / 2, r.top());

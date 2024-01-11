@@ -14,6 +14,15 @@ magent_point::magent_point(QGraphicsItem *parent) : QGraphicsEllipseItem(parent)
     setBrush(Qt::blue);
     setFlag(QGraphicsItem::ItemSendsGeometryChanges);
     setZValue(3);
+    setRect(-8, -8, 16, 16);
+}
+
+magent_point::magent_point(qreal x, qreal y, qreal width, qreal height, QGraphicsItem *parent):QGraphicsEllipseItem(x,y,width,height,parent)
+{
+    setBrush(Qt::blue);
+    setFlag(QGraphicsItem::ItemSendsGeometryChanges);
+   // setZValue(3);
+    //setRect(-8, -8, 16, 16);
 }
 
 void magent_point::add_chart_line(chart_line *pLine)
@@ -33,10 +42,7 @@ void magent_point::updatePosition()
 
 QVariant magent_point::itemChange(GraphicsItemChange change, const QVariant &value)
 {
-//    if (change == QGraphicsItem::ItemScenePositionHasChanged)
-   // {
-        // Update connected lines here
-   // }
+
     switch (change)
     {
     //case ItemPositionHasChanged:
@@ -44,7 +50,6 @@ QVariant magent_point::itemChange(GraphicsItemChange change, const QVariant &val
         foreach (chart_line *line, m_list_chart_line)
         {
             line->updatePosition();
-         //   edge->adjust();
         }
         break;
     default:

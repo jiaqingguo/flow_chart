@@ -34,17 +34,17 @@ private:
     int HandleSize = 8;
 
 
-     static const int handleSize = 8;
+    static const int handleSize = 8;
 
     bool resizingTopLeft = false;
-      bool resizingBottomRight = false;
-      bool resizingTopRight = false;
-      bool resizingBottomLeft = false;
+    bool resizingBottomRight = false;
+    bool resizingTopRight = false;
+    bool resizingBottomLeft = false;
 
-      QRectF topLeftHandle;
-      QRectF bottomRightHandle;
-      QRectF topRightHandle;
-      QRectF bottomLeftHandle;
+    QRectF topLeftHandle;
+    QRectF bottomRightHandle;
+    QRectF topRightHandle;
+    QRectF bottomLeftHandle;
 protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant& value) override;
 
@@ -52,7 +52,6 @@ protected:
     void hoverMoveEvent(QGraphicsSceneHoverEvent *event) override ;
 
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override ;
-
 
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
 
@@ -63,7 +62,8 @@ protected:
 private:
     bool isInResizeArea(const QPointF &pos) ;
 
-    void  updateMagentPointPos();
+    // 更新磁力点位置;
+    void updateMagentPointPos();
 
     // 更细连接线;
     void updateConnectLinePos();

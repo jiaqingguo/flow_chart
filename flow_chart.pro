@@ -21,29 +21,25 @@ SOURCES += \
     custom_class/drag_widget.cpp \
     graphics_scene.cpp \
     graphics_view.cpp \
-    item/autoLine.cpp \
     item/chart_base.cpp \
+    item/chart_diamond.cpp \
     item/chart_line.cpp \
     item/chart_rect.cpp \
-    item/chip.cpp \
-    item/edge.cpp \
     magent_point.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
-    custom_class/chart_diamond.h \
     custom_class/drag_group_box.h \
     custom_class/drag_pushbutton.h \
     custom_class/drag_widget.h \
     graphics_scene.h \
     graphics_view.h \
-    item/autoLine.h \
     item/chart_base.h \
     item/chart_define.h \
+    item/chart_diamond.h \
     item/chart_line.h \
     item/chart_rect.h \
-    item/chip.h \
     item/edge.h \
     magent_point.h \
     mainwindow.h

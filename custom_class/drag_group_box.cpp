@@ -40,7 +40,6 @@ void drag_group_box::mousePressEvent(QMouseEvent *event)
         qDebug()<<"删除lable:";
         child->close();
     }
-
 }
 
  // 拖动进入事件;

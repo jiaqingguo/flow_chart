@@ -6,6 +6,8 @@
 
 #include "graphics_view.h"
 #include "item/chart_rect.h"
+#include "item/chart_diamond.h"
+
 
 graphics_view::graphics_view()
 {
@@ -19,35 +21,27 @@ graphics_view::graphics_view(QWidget *parent)
 
 void graphics_view::create_chart_item(const EChartType type, const QPointF pos)
 {
-
         switch (type)
         {
             case EChartType::type_chart_rect:
             {
                 chart_rect* pItem = new chart_rect(EChartType::type_chart_rect);
-
                 this->scene()->addItem(pItem);
                 pItem->setPos(pos);
 
-                break;
             }
+            break;
             case EChartType::type_chart_diamond:
             {
-                chart_rect* pItem = new chart_rect(EChartType::type_chart_rect);
-                 pItem->setRotation(45);
+                chart_diamond* pItem = new chart_diamond;
+
                 this->scene()->addItem(pItem);
                 pItem->setPos(pos);
-                  break;
             }
-
-
+            break;
             default:
-            {
-                 break;
-            }
-//
+            break;
         }
-
 
 }
 

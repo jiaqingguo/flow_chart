@@ -9,10 +9,9 @@
 
 #include <QDebug>
 
-#include "item/edge.h"
 #include "item/chart_rect.h"
 #include "item/chart_line.h"
-#include "custom_class/drag_pushbutton.h";
+#include "custom_class/drag_pushbutton.h"
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -191,18 +190,7 @@ void MainWindow::slot_view_mouse_clicked(QPoint point)
 
 void MainWindow::slot_view_mouse_move(QPoint point)
 {
-    if (m_everyDraw)
-    {
-        if (m_everyLine)
-        {
-           m_everyLine->adjust(ui->graphicsView->mapToScene(point));
-        }
-        
-    }
-    if(m_pCur_line_Item)
-    {
-          //m_pCur_line_Item->setLine(m_clicked_pointF.x(),m_clicked_pointF.y(),ui->graphicsView->mapToScene(point).x(),ui->graphicsView->mapToScene(point).y());
-    }
+
 }
 
 void MainWindow::addItem(QPoint point)
@@ -220,24 +208,3 @@ void MainWindow::everyTimeDraw(QPoint point)//实时划线
 }
 
 //------------------------------------------------------------------------------------------------------------
-void MainWindow::setFirstItem(Chip *chip,QPointF point)//节点左键
-{
-
-}
-void MainWindow::drawLine(Chip * chip,QPointF point)//节点右键，划线完成
-{
-
-}
-void MainWindow::remove(Chip *)
-{
-
-}
-
-void MainWindow::itemInfo(Chip *)
-{
-
-}
-void MainWindow::remove(Edge *)
-{
-    qDebug()<<"--------------------remove(Edge *)";
-}

@@ -2,8 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "item/chip.h"
-#include "item/autoLine.h"
+
 #include "graphics_scene.h"
 
 QT_BEGIN_NAMESPACE
@@ -60,21 +59,13 @@ private slots:
     void everyTimeDraw(QPoint point);
     void addPoint(QPoint point);
 
-
-    //-----节点传的消息槽
-    void setFirstItem(Chip *,QPointF);
-    void drawLine(Chip *,QPointF);
-    void remove(Chip *);
-    void itemInfo(Chip *);
-
-    void remove(Edge *);
 private:
      graphics_scene * m_scene;
       bool m_lineFlag;      // 是否划线;
-      Chip *m_firstPressChip=nullptr;
+
       bool m_everyDraw=false;
       QPointF m_firstPoint;
-      AutoLine* m_everyLine = nullptr;
+
       bool m_itemFlag =true;  // 是 item还是line
       int numofItem=0;//节点的编号---0 1 2 3 ...存储的值
       int numofLine=0;//节点的编号---0 1 2 3 ...存储的值
