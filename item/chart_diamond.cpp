@@ -70,37 +70,36 @@ void chart_diamond::initMagentPoints()
 
 void chart_diamond::updateMagentPointsPos()
 {
-    // 获取拉伸后的菱形的边界矩形
-           QRectF rect = boundingRect();
+    QRectF rect = boundingRect(); // 获取自定义的边界矩形
 
-           // 计算四个角的坐标（以菱形边界矩形的中心为原点）
-           QPointF top(rect.center().x(), rect.top());
-           QPointF right(rect.right(), rect.center().y());
-           QPointF bottom(rect.center().x(), rect.bottom());
-           QPointF left(rect.left(), rect.center().y());
+        // 计算菱形四个角的坐标
+        QPointF top(rect.center().x(), rect.top());
+        QPointF right(rect.right(), rect.center().y());
+        QPointF bottom(rect.center().x(), rect.bottom());
+        QPointF left(rect.left(), rect.center().y());
 
-           // 计算每条边的中点坐标
-           QPointF midPointTop((top.x() + right.x()) / 2, (top.y() + right.y()) / 2);
-           QPointF midPointRight((right.x() + bottom.x()) / 2, (right.y() + bottom.y()) / 2);
-           QPointF midPointBottom((bottom.x() + left.x()) / 2, (bottom.y() + left.y()) / 2);
-           QPointF midPointLeft((left.x() + top.x()) / 2, (left.y() + top.y()) / 2);
+        // 计算每条边的中点坐标
+        QPointF midPointTop = (top + left) / 2.0;
+        QPointF midPointRight = (top + right) / 2.0;
+        QPointF midPointBottom = (bottom + right) / 2.0;
+        QPointF midPointLeft = (bottom + left) / 2.0;
 
-           // 假设 m_TopMagnetPoint, m_RightMagnetPoint, m_BottomMagnetPoint, m_LeftMagnetPoint
-           // 是类成员变量，它们代表磁力点的位置
-           auto m_TopMagnetPoint = midPointTop;
-           auto m_RightMagnetPoint = midPointRight;
-           auto m_BottomMagnetPoint = midPointBottom;
-           auto m_LeftMagnetPoint = midPointLeft;
+        // 假设磁力点图形元素是 chart_diamond 的子项
+       // qreal magnetWidth = m_pTopMagentPoint->boundingRect()->rw;  // 磁力点的宽度
+       // qreal magnetHeight = 10; // 磁力点的高度
+        qreal magnetWidth = m_pTopMagentPoint->boundingRect().width();
+        qreal magnetHeight = m_pTopMagentPoint->boundingRect().height();
 
-           // 更新可视化磁力点项的位置
-           // 假设 m_pTopMagnetItem 等是 QGraphicsItem* 类型的成员变量
-           qreal itemWidth = 10;  // 替换为你磁力点的实际宽度
-           qreal itemHeight = 10; // 替换为你磁力点的实际高度
+        // 更新磁力点图形元素的位置，确保磁力点的中心位于中点
+        m_pTopMagentPoint->setPos(midPointTop.x() - magnetWidth / 2, midPointTop.y() - magnetHeight / 2);
+        m_pRightMagentPoint->setPos(midPointRight.x() - magnetWidth / 2, midPointRight.y() - magnetHeight / 2);
+        m_pButtomMagentPoint->setPos(midPointBottom.x() - magnetWidth / 2, midPointBottom.y() - magnetHeight / 2);
+        m_pLeftMagentPoint->setPos(midPointLeft.x() - magnetWidth / 2, midPointLeft.y() - magnetHeight / 2);
 
-           m_pTopMagentPoint->setPos(midPointTop.x() - itemWidth / 2, midPointTop.y() - itemHeight / 2);
-           m_pRightMagentPoint->setPos(midPointRight.x() - itemWidth / 2, midPointRight.y() - itemHeight / 2);
-           m_pButtomMagentPoint->setPos(midPointBottom.x() - itemWidth / 2, midPointBottom.y() - itemHeight / 2);
-           m_pLeftMagentPoint->setPos(midPointLeft.x() - itemWidth / 2, midPointLeft.y() - itemHeight / 2);
+        // 如果磁力点不是子项，则需要使用 mapToScene 或类似方法将局部坐标转换为场景坐标
+
+        // 最后，确保调用 update()
+        update();
 
        // 如果你需要将磁力点作为图形对象在场景中移动，你可以使用setPos()方法
 //       // 例如，如果磁力点是 QGraphicsEllipseItem 类型的对象
@@ -117,7 +116,6 @@ void chart_diamond::setBoundingRect(QRectF rectF)
 
 QRectF chart_diamond::boundingRect() const
 {
-    // 返回包含菱形的矩形框。例如，假设菱形边长为100。
     return m_rect;
 }
 
@@ -233,7 +231,7 @@ void chart_diamond::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         update();
 
         // 如果有必要，更新磁力点的位置
-        updateMagentPointsPos();
+        //updateMagentPointsPos();
     }
     else
     {
@@ -285,7 +283,26 @@ void chart_diamond::paint(QPainter *painter, const QStyleOptionGraphicsItem *opt
           painter->drawRect(QRectF(rect.topRight(), QSizeF(-gripSize, gripSize)));
           painter->drawRect(QRectF(rect.bottomLeft(), QSizeF(gripSize, -gripSize)));
           painter->drawRect(QRectF(rect.bottomRight(), QSizeF(-gripSize, -gripSize)));
+
+          // 根据顶点位置，计算每条边的中点
+//          QPointF topEdgeMidpoint = (top + right) / 2;
+//          QPointF rightEdgeMidpoint = (right + bottom) / 2;
+//          QPointF bottomEdgeMidpoint = (bottom + left) / 2;
+//          QPointF leftEdgeMidpoint = (left + top) / 2;
+
+//          // 更新磁力点的位置
+//          m_pTopMagentPoint->setPos(topEdgeMidpoint);
+//          m_pRightMagentPoint->setPos(rightEdgeMidpoint);
+//          m_pButtomMagentPoint->setPos(bottomEdgeMidpoint);
+//          m_pLeftMagentPoint->setPos(leftEdgeMidpoint);
       }
+
+   // 假设菱形是由其四个顶点定义的
+//      QPointF topVertex = ...;   // 菱形顶部顶点
+//      QPointF rightVertex = ...; // 菱形右侧顶点
+//      QPointF bottomVertex = ...; // 菱形底部顶点
+//      QPointF leftVertex = ...;  // 菱形左侧顶点
+
 
    // updateMagentPointsPos();
 
